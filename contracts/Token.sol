@@ -21,7 +21,8 @@ contract Token {
     event Approval(
         address indexed owner, 
         address indexed spender,
-        uint256 value);
+        uint256 value
+    );
 
     constructor(
         string memory _name, 
