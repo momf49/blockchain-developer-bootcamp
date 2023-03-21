@@ -151,11 +151,13 @@ describe('Token', () => {
       it('emits a Transfer event', async () => {
         const event = result.events[0]
         expect(event.event).to.equal('Transfer')
-    
+
         const args = event.args
         expect(args.from).to.equal(deployer.address)
         expect(args.to).to.equal(receiver.address)
         expect(args.value).to.equal(amount)
+      })
+
     })
 
     describe('Failure', async () => {
@@ -165,7 +167,5 @@ describe('Token', () => {
     })
 
   })
-
-})
 
 })
