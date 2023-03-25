@@ -77,14 +77,10 @@ async function main() {
   console.log(`Made order from ${user1.address}`)
 
   // User 1 cancels order
-  if (result && result.events && result.events[0] && result.events[0].args) {
-    orderId = result.events[0].args.id
-    transaction = await exchange.connect(user1).cancelOrder(orderId)
-    result = await transaction.wait()
-    console.log(`Cancelled order from ${user1.address}\n`)
-  } else {
-    console.log("Order not found or missing args")
-  }
+  orderId = result.events[0].args.id
+  transaction = await exchange.connect(user1).cancelOrder(orderId)
+  result = await transaction.wait()
+  console.log(`Cancelled order from ${user1.address}\n`)
 
   // Wait 1 second
   await wait(1)
@@ -99,32 +95,24 @@ async function main() {
   console.log(`Made order from ${user1.address}`)
 
   // User 2 fills order
-  if (result && result.events && result.events[0] && result.events[0].args) {
-    orderId = result.events[0].args.id
-    transaction = await exchange.connect(user2).fillOrder(orderId)
-    result = await transaction.wait()
-    console.log(`Filled order from ${user1.address}\n`)
-  } else {
-    console.log("Order not found or missing args")
-  }
+  orderId = result.events[0].args.id
+  transaction = await exchange.connect(user2).fillOrder(orderId)
+  result = await transaction.wait()
+  console.log(`Filled order from ${user1.address}\n`)
 
   // Wait 1 second
   await wait(1)
 
   // User 1 makes another order
-  transaction = await exchange.connect(user1).makeOrder(mETH.address, tokens(50), DApp.address, tokens(15))
+  transaction = await exchange.makeOrder(mETH.address, tokens(50), DApp.address, tokens(15))
   result = await transaction.wait()
   console.log(`Made order from ${user1.address}`)
 
   // User 2 fills another order
-if (result && result.events && result.events[0] && result.events[0].args) {
   orderId = result.events[0].args.id
   transaction = await exchange.connect(user2).fillOrder(orderId)
   result = await transaction.wait()
   console.log(`Filled order from ${user1.address}\n`)
-} else {
-  console.log("Order not found or missing args")
-}
 
   // Wait 1 second
   await wait(1)
@@ -135,14 +123,10 @@ if (result && result.events && result.events[0] && result.events[0].args) {
   console.log(`Made order from ${user1.address}`)
 
   // User 2 fills final order
-  if (result && result.events && result.events[0] && result.events[0].args) {
-    orderId = result.events[0].args.id
-    transaction = await exchange.connect(user2).fillOrder(orderId)
-    result = await transaction.wait()
-    console.log(`Filled order from ${user1.address}\n`)
-  } else {
-    console.log("Order not found or missing args")
-  }
+  orderId = result.events[0].args.id
+  transaction = await exchange.connect(user2).fillOrder(orderId)
+  result = await transaction.wait()
+  console.log(`Filled order from ${user1.address}\n`)
 
   // Wait 1 second
   await wait(1)
